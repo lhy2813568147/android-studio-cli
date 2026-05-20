@@ -1,0 +1,85 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Android: Build",
+      "type": "shell",
+      "command": "python -m cli_anything.android_studio gradle build --variant debug",
+      "group": "build",
+      "problemMatcher": [],
+      "detail": "构建Android项目 (debug版本)"
+    },
+    {
+      "label": "Android: Test",
+      "type": "shell",
+      "command": "python -m cli_anything.android_studio gradle test --variant debug --type unit",
+      "group": "test",
+      "problemMatcher": [],
+      "detail": "运行单元测试"
+    },
+    {
+      "label": "Android: Lint",
+      "type": "shell",
+      "command": "python -m cli_anything.android_studio gradle lint --variant debug",
+      "group": "test",
+      "problemMatcher": [],
+      "detail": "运行代码检查"
+    },
+    {
+      "label": "Android: Clean",
+      "type": "shell",
+      "command": "python -m cli_anything.android_studio gradle clean",
+      "group": "build",
+      "problemMatcher": [],
+      "detail": "清理项目"
+    },
+    {
+      "label": "Android: Install",
+      "type": "shell",
+      "command": "python -m cli_anything.android_studio gradle install --variant debug",
+      "group": "build",
+      "problemMatcher": [],
+      "detail": "安装到设备"
+    },
+    {
+      "label": "Android: List Devices",
+      "type": "shell",
+      "command": "python -m cli_anything.android_studio adb devices",
+      "group": "none",
+      "problemMatcher": [],
+      "detail": "列出连接的设备"
+    },
+    {
+      "label": "Android: List AVDs",
+      "type": "shell",
+      "command": "python -m cli_anything.android_studio emulator list-avds",
+      "group": "none",
+      "problemMatcher": [],
+      "detail": "列出可用的AVD"
+    },
+    {
+      "label": "Android: Start Emulator",
+      "type": "shell",
+      "command": "python -m cli_anything.android_studio emulator start Pixel_6_API_33",
+      "group": "none",
+      "problemMatcher": [],
+      "detail": "启动模拟器"
+    },
+    {
+      "label": "Android: Stop Emulator",
+      "type": "shell",
+      "command": "python -m cli_anything.android_studio emulator stop",
+      "group": "none",
+      "problemMatcher": [],
+      "detail": "停止模拟器"
+    },
+    {
+      "label": "Android: Logcat",
+      "type": "shell",
+      "command": "python -m cli_anything.android_studio adb logcat",
+      "group": "none",
+      "problemMatcher": [],
+      "detail": "查看设备日志"
+    }
+  ]
+}
