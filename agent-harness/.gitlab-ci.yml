@@ -1,0 +1,47 @@
+stages:
+  - build
+  - test
+  - lint
+  - deploy
+
+variables:
+  ANDROID_HOME: "/opt/android-sdk"
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
+before_script:
+  - export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
+
+build:
+  stage: build
+  script:
+    - android-cli gradle build --variant debug
+  artifacts:
+    paths:
+      - app/build/outputs/
+    expire_in: 1 week
+
+test:
+  stage: test
+  script:
+    - android-cli gradle test --variant debug --type unit
+  artifacts:
+    reports:
+      junit: app/build/test-results/testDebugUnitTest/*.xml
+
+lint:
+  stage: lint
+  script:
+    - android-cli gradle lint --variant debug
+  artifacts:
+    paths:
+      - app/build/reports/lint-results-debug.html
+
+deploy:
+  stage: deploy
+  script:
+    - android-cli gradle bundle --variant release
+  only:
+    - main
+  artifacts:
+    paths:
+      - app/build/outputs/bundle/release/
