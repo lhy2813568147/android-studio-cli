@@ -1,0 +1,15 @@
+#!/bin/bash
+# Git pre-push hook for Android Studio CLI
+# 将此文件复制到 .git/hooks/pre-push
+
+echo "运行测试..."
+
+# 运行单元测试
+python -m cli_anything.android_studio gradle test --variant debug --type unit
+
+if [ $? -ne 0 ]; then
+    echo "测试失败，请修复后再推送"
+    exit 1
+fi
+
+echo "测试通过"
